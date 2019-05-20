@@ -20,6 +20,11 @@ abstract class BaseActivity<VM : BaseViewModel, B : ViewDataBinding> : AppCompat
         setupView()
         setListener()
         viewModel?.start()
+        initData()
+    }
+
+    protected open fun initData() {
+
     }
 
 
