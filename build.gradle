@@ -25,3 +25,35 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext {
+    // app版本号（记得更新！！！）
+    compileSdkVersion = 28
+    minSdkVersion = 21
+    targetSdkVersion = 28
+    appVersionCode = 1
+    appVersionName = "1.0"
+
+    // 依赖库版本号
+    junitVersion = '4.12'
+    runnerVersion = '1.0.2'
+    espressoVersion = '3.0.2'
+
+    constraintLayoutVersion = '1.1.2'
+
+    //调试相关
+    loggerVersion = '2.2.0'
+    stethoVersion = '1.5.0'
+
+    rxjavaVersion = '2.2.8'
+    rxandroidVersion = '2.1.1'
+
+    retrofitVersion = '2.5.0'
+    retrofitAdapterRxjava2Version = '2.5.0'
+    retrofitConverterGsonVersion = '2.5.0'
+
+    glideVersion = '4.7.1'
+
+    circleimageviewVersion = '2.2.0'
+
+}
