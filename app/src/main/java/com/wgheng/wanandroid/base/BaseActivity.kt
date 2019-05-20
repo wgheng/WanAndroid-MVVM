@@ -11,17 +11,30 @@ import androidx.databinding.ViewDataBinding
  */
 abstract class BaseActivity<VM : BaseViewModel, B : ViewDataBinding> : AppCompatActivity() {
 
-    abstract val viewModel: VM?
+    var viewModel: VM? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        if (savedInstanceState != null) {
+//            val fragments = supportFragmentManager.fragments
+//            if (fragments.isNotEmpty()) {
+//                val transaction = supportFragmentManager.beginTransaction()
+//                for (fragment in fragments) {
+//                    transaction.remove(fragment)
+//                }
+//                transaction.commitAllowingStateLoss()
+//            }
+//        }
+        viewModel = createViewModel()
         val binding = DataBindingUtil.setContentView<B>(this, getLayoutId())
         bindingViewModel(binding)
-        setupView()
+        setupView(savedInstanceState)
         setListener()
         viewModel?.start()
         initData()
     }
+
+    abstract fun createViewModel(): VM?
 
     protected open fun initData() {
 
@@ -32,11 +45,11 @@ abstract class BaseActivity<VM : BaseViewModel, B : ViewDataBinding> : AppCompat
 
     abstract fun bindingViewModel(binding: B)
 
-    protected open fun setupView() {
+    protected open fun setupView(savedInstanceState: Bundle?) {
 
     }
 
-    protected open fun setListener(){
+    protected open fun setListener() {
 
     }
 }

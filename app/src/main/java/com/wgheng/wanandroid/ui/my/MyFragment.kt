@@ -9,8 +9,9 @@ import com.wgheng.wanandroid.databinding.FragmentMyBinding
  * Description :
  */
 class MyFragment : BaseFragment<MyViewModel,FragmentMyBinding>() {
-    override val viewModel: MyViewModel?
-        get() = MyViewModel()
+    override fun createViewModel(): MyViewModel? {
+        return MyViewModel()
+    }
 
     override fun setupView() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.

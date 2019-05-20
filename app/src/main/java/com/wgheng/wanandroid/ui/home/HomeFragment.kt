@@ -11,15 +11,18 @@ import kotlinx.android.synthetic.main.fragment_home.*
  * Description :
  */
 class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
-    override val viewModel: HomeViewModel?
-        get() = HomeViewModel()
+    override fun createViewModel(): HomeViewModel? {
+        return  HomeViewModel()
+    }
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_home
     }
 
     override fun setupView() {
-        recyclerView.adapter = ArticleListAdapter(context!!, viewModel!!.articleList)
+        reenterTransition = true
+        val articleList = viewModel!!.articleList
+        recyclerView.adapter = ArticleListAdapter(context!!, articleList)
         recyclerView.layoutManager = LinearLayoutManager(context!!)
     }
 

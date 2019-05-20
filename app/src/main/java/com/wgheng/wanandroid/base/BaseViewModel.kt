@@ -8,8 +8,8 @@ import androidx.databinding.BaseObservable
  */
 abstract class BaseViewModel : BaseObservable() {
 
-   fun start(){
+    open fun start() {
 
-   }
+    }
 
 }

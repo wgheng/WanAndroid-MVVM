@@ -14,14 +14,16 @@ import androidx.fragment.app.Fragment
  */
 abstract class BaseFragment<VM : BaseViewModel, B : ViewDataBinding> : Fragment() {
 
-    abstract val viewModel: VM?
+    var viewModel: VM? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        viewModel = createViewModel()
         val binding = DataBindingUtil.inflate<B>(inflater, getLayoutId(), container, false)
         setViewModel(binding)
-        setupView()
         return binding.root
     }
+
+    abstract fun createViewModel(): VM?
 
     abstract fun setupView()
 
@@ -31,8 +33,14 @@ abstract class BaseFragment<VM : BaseViewModel, B : ViewDataBinding> : Fragment(
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        setupView()
+        setListener()
         viewModel?.start()
         initData()
+    }
+
+    protected open fun setListener() {
+
     }
 
     protected open fun initData() {

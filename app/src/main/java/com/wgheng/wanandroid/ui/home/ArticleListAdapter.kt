@@ -11,7 +11,7 @@ import com.wgheng.wanandroid.databinding.ItemArticleListBinding
  * Created by wgheng on 2019/5/20.
  * Description :
  */
-class ArticleListAdapter(context: Context, items: ObservableList<ArticleBean.Data>) :
+class ArticleListAdapter(context: Context,items: ObservableList<ArticleBean.Data>) :
     BaseRVAdapter<ItemArticleListBinding, ArticleBean.Data>(context, items) {
 
     override fun onItemBind(binding: ItemArticleListBinding?, itemModel: ArticleBean.Data) {

@@ -9,8 +9,10 @@ import com.wgheng.wanandroid.databinding.FragmentWxColumnBinding
  * Description :
  */
 class WxColumnFragment : BaseFragment<WxColumnViewModel, FragmentWxColumnBinding>() {
-    override val viewModel: WxColumnViewModel?
-        get() = WxColumnViewModel()
+
+    override fun createViewModel(): WxColumnViewModel? {
+        return WxColumnViewModel()
+    }
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_wx_column
