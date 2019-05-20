@@ -1,12 +1,12 @@
 package com.wgheng.wanandroid.ui
 
 import androidx.fragment.app.Fragment
-import com.wgheng.wanandroid.base.BaseActivity
 import com.wgheng.wanandroid.R
+import com.wgheng.wanandroid.base.BaseActivity
 import com.wgheng.wanandroid.databinding.ActivityMainBinding
 import com.wgheng.wanandroid.ui.home.HomeFragment
 import com.wgheng.wanandroid.ui.my.MyFragment
-import com.wgheng.wanandroid.ui.wxcolumn.WXColumnFragment
+import com.wgheng.wanandroid.ui.wxcolumn.WxColumnFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
@@ -30,7 +30,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         super.setupView()
         fragments = ArrayList()
         fragments.add(HomeFragment())
-        fragments.add(WXColumnFragment())
+        fragments.add(WxColumnFragment())
         fragments.add(MyFragment())
         switchFragment(position)
     }
@@ -48,7 +48,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         this.navigationView.setOnNavigationItemReselectedListener {
             when(it.itemId){
                 R.id.navHome -> (fragments[position] as HomeFragment).refreshPager()
-                R.id.navWXColumn -> (fragments[position] as WXColumnFragment).refreshPager()
+                R.id.navWXColumn -> (fragments[position] as WxColumnFragment).refreshPager()
                 R.id.navMy -> (fragments[position] as MyFragment).refreshPager()
             }
         }
@@ -56,7 +56,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
 
     private fun switchFragment(position: Int) {
         val ft = supportFragmentManager.beginTransaction()
-        val fragment = fragments.get(position)
+        val fragment = fragments[position]
         fragments.forEach {
             if (it.isAdded) {
                 ft.hide(it)
