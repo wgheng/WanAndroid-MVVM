@@ -32,10 +32,10 @@ class HomeViewModel : BaseViewModel() {
             .getArticleList(page)
             .subscribe(object : ApiObserver<ArticleBean>() {
                 override fun doOnSuccess(data: ArticleBean?, msg: String?) {
-                    Logger.e("$articleList")
                     if (data != null) {
                         articleList.addAll(data.datas)
                     }
+                    Logger.e("$articleList")
                 }
             })
     }

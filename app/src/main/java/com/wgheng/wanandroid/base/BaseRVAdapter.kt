@@ -8,7 +8,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ObservableList
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import com.orhanobut.logger.Logger
 
 /**
  * Created by wgheng on 2019/5/20.
@@ -23,7 +22,6 @@ abstract class BaseRVAdapter<B : ViewDataBinding, T>(
     init {
         //设置ObservableList变化监听
         dataChangeObserver = DataChangeObserver()
-        Logger.e("$items")
     }
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {

@@ -12,13 +12,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
 
-
-    companion object {
-        const val HOME_FRAG = "home"
-        const val WX_COLUMN_FRAG = "wx_column"
-        const val MY_FRAG = "my"
-    }
-
     override fun createViewModel(): MainViewModel? {
         return MainViewModel()
     }
@@ -37,9 +30,9 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     override fun setupView(savedInstanceState: Bundle?) {
         super.setupView(savedInstanceState)
         fragments = ArrayList()
-        fragments.add(supportFragmentManager.findFragmentByTag(HOME_FRAG) ?: HomeFragment())
-        fragments.add(supportFragmentManager.findFragmentByTag(WX_COLUMN_FRAG) ?: WxColumnFragment())
-        fragments.add(supportFragmentManager.findFragmentByTag(MY_FRAG) ?: MyFragment())
+        fragments.add(supportFragmentManager.findFragmentByTag(FragTag.HOME.tag) ?: HomeFragment())
+        fragments.add(supportFragmentManager.findFragmentByTag(FragTag.WX_COLUMN.tag) ?: WxColumnFragment())
+        fragments.add(supportFragmentManager.findFragmentByTag(FragTag.MY.tag) ?: MyFragment())
         switchFragment(position)
     }
 
@@ -73,18 +66,26 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         if (fragment.isAdded) {
             ft.show(fragment)
         } else {
-            ft.add(R.id.flMain, fragment, getFragmentTagByPosition(position))
+            ft.add(R.id.flMain, fragment, getTagByPosition(position))
         }
         ft.commit()
     }
 
-    private fun getFragmentTagByPosition(position: Int): String? {
+    private fun getTagByPosition(position: Int): String? {
         return when (position) {
-            0 -> HOME_FRAG
-            1 -> WX_COLUMN_FRAG
-            2 -> MY_FRAG
+            FragTag.HOME.position -> FragTag.HOME.tag
+            FragTag.WX_COLUMN.position -> FragTag.WX_COLUMN.tag
+            FragTag.MY.position -> FragTag.MY.tag
             else -> null
         }
     }
+
+}
+
+enum class FragTag(val position: Int, val tag: String) {
+
+    HOME(0, "home_frag"),
+    WX_COLUMN(1, "wx_column_frag"),
+    MY(2, "my_frag")
 
 }
